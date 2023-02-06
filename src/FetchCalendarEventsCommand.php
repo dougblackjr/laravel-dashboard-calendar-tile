@@ -25,6 +25,9 @@ class FetchCalendarEventsCommand extends Command
                     return [
                         'name' => $event->name,
                         'date' => Carbon::createFromFormat('Y-m-d H:i:s', $sortDate)->format(DateTime::ATOM),
+                        'start' => $event->start->dateTime,
+                        'end' => $event->end->dateTime,
+                        'all_day' => $event->isAllDayEvent(),
                     ];
                 })
                 ->unique('name')
